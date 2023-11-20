@@ -1,0 +1,24 @@
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model Leilao {
+  produto     String
+  preco   double
+  datalimite data
+  dono    User    @relation(fields: [donoId], references: [id])
+  donoId  Int
+  listadelances String
+}
+
+model Lance {
+  leilao Leilao @default(false)
+  comprador    User    @relation(fields: [authorId], references: [id])
+  valor  double
+}
+
+model Job {
+  fecharleilao double
+}
